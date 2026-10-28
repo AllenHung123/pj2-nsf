@@ -121,3 +121,32 @@ There are `TODO` keywords at sections that you need to implement. So, you can tr
         Services []NnsfDiscGetResponse `json:"services"`
     }
     ```
+
+## PJ2 implementation and local review
+
+The completed context stores durable per-NF JSON records and supports partial
+service deletion, restart recovery, and concurrent registration. `config.yaml`
+continues to use bbolt. See [Report.md](Report.md) for the implementation,
+verification evidence, and the current local-only review status.
+
+MongoDB is an optional `DbIf` backend selected with `db_type: "mongodb"`.
+Connection settings are `NSF_MONGO_URI` (default `mongodb://127.0.0.1:27017`)
+and `NSF_MONGO_DATABASE` (default `pj2_nsf`). The demo config uses port 18080.
+
+```sh
+docker run -d --rm --name pj2-nsf-mongo -p 127.0.0.1:27019:27017 mongo:8.0
+NSF_TEST_MONGODB=1 NSF_MONGO_URI=mongodb://127.0.0.1:27019 go test -v ./internal/db
+make
+python3 scripts/check_api.py --backend mongodb
+docker stop pj2-nsf-mongo
+```
+
+MongoDB tests use a separate `pj2_nsf_test_<pid>` database. The HTTP demo uses a
+separate `pj2_nsf_demo_<pid>` database unless explicitly overridden. The optional
+`scripts/record_terminal.py` captures live PTY output into MP4; it needs Pillow,
+FFmpeg (`FFMPEG` may specify its path), and the DejaVu Sans Mono font. Example:
+
+```sh
+NSF_DEMO_PAUSE=0.6 python3 scripts/record_terminal.py --out artifacts/db.mp4 \
+  python3 scripts/check_api.py --backend mongodb
+```

@@ -1,0 +1,42 @@
+go test -v ./...
+?   	nsf	[no test files]
+?   	nsf/cmd	[no test files]
+=== RUN   TestDb
+=== RUN   TestDb/Bbolt_DB
+=== RUN   TestDb/Bbolt_DB/Single_Data_Operations
+=== RUN   TestDb/Bbolt_DB/Multiple_Data_Operations
+--- PASS: TestDb (0.02s)
+    --- PASS: TestDb/Bbolt_DB (0.02s)
+        --- PASS: TestDb/Bbolt_DB/Single_Data_Operations (0.01s)
+        --- PASS: TestDb/Bbolt_DB/Multiple_Data_Operations (0.00s)
+PASS
+ok  	nsf/internal/db	0.030s
+=== RUN   TestDbContext
+=== RUN   TestDbContext/Single_Data_Operations
+=== RUN   TestDbContext/Multiple_Data_Operations
+--- PASS: TestDbContext (0.15s)
+    --- PASS: TestDbContext/Single_Data_Operations (0.12s)
+    --- PASS: TestDbContext/Multiple_Data_Operations (0.03s)
+=== RUN   TestRecoveryAndPartialDeregistration
+--- PASS: TestRecoveryAndPartialDeregistration (0.04s)
+=== RUN   TestConcurrentRegistration
+--- PASS: TestConcurrentRegistration (0.16s)
+=== RUN   TestServiceContext
+=== RUN   TestServiceContext/Service_Registration
+=== RUN   TestServiceContext/Service_Discovery
+=== RUN   TestServiceContext/Service_Deregistration
+--- PASS: TestServiceContext (0.03s)
+    --- PASS: TestServiceContext/Service_Registration (0.01s)
+    --- PASS: TestServiceContext/Service_Discovery (0.00s)
+    --- PASS: TestServiceContext/Service_Deregistration (0.02s)
+PASS
+ok  	nsf/internal/nsfContext	(cached)
+?   	nsf/internal/sbi	[no test files]
+?   	nsf/internal/sbi/consumer	[no test files]
+?   	nsf/internal/sbi/processor	[no test files]
+?   	nsf/logger	[no test files]
+=== RUN   TestNsfConfig
+--- PASS: TestNsfConfig (0.00s)
+PASS
+ok  	nsf/model	(cached)
+?   	nsf/pkg	[no test files]

@@ -1,0 +1,51 @@
+[TEST] Check Status ******************************
+[36m[INFO][0m Checking if the provided path exists and is a directory...
+[32m[PASS][0m The provided path exists and is a directory.
+[36m[INFO][0m Running 'make lint' on the provided path...
+[32m[PASS][0m Lint check passed.
+[36m[INFO][0m Running 'make' on the provided path...
+[32m[PASS][0m Make check passed.
+[36m[INFO][0m Running 'make test' on the provided path...
+[32m[PASS][0m Test check passed.
+[TEST] Check Basic Tests *************************
+[35m[PREP][0m Preparing test data...
+[35m[PREP][0m Test data prepared. Total NF: 1000, Total Services: 5474
+[36m[INFO][0m Starting NSF...
+[32m[PASS][0m NSF is running.
+[36m[INFO][0m Checking NSF heartbeat...
+[33m[DEBG][0m Heartbeat API responded with expected status 204.
+[32m[PASS][0m Heartbeat check passed.
+[36m[INFO][0m Checking registration...
+[33m[DEBG][0m All 5474 services registered successfully.
+[32m[PASS][0m Registration check passed.
+[36m[INFO][0m Checking discovery...
+[33m[DEBG][0m All 5474 services discovered successfully.
+[32m[PASS][0m Discovery check passed.
+[36m[INFO][0m Checking deregistration...
+[33m[DEBG][0m All 5474 services deregistered successfully.
+[32m[PASS][0m Deregistration check passed.
+[36m[INFO][0m Checking discovery of non-existent services...
+[33m[DEBG][0m Discovery of 5474 non-existent services correctly returned 404 Not Found.
+[32m[PASS][0m Discovery of non-existent services check passed.
+[36m[INFO][0m Stopping NSF...
+[32m[PASS][0m NSF is stopped.
+[RESULT] *****************************************
+
+ ⣴⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⡷
+ ⠈⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿
+ ⠀⢸⣿⣿⣿⣿⣷⣆⣀⣀⣀⣀⣀⣾⣿⣿⣿⣿⡇
+ ⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+ ⠀⠀⠿⢿⣿⣿⣿⣿⡏⡀⠀⡙⣿⣿⣿⣿⣿⠛
+    ⣿⣿⣿⡿⠟⠷⣅⣀⠵⠟⢿⣿⣿⣿⡆
+ ⠀⠀⠀⣿⣿⠏⢲⣤⠀⠀⠀⠀⢠⣶⠙⣿⣿⠃
+ ⠀⠀⠀⠘⢿⡄⠈⠃⠀⢐⢔⠀⠈⠋⢀⡿⠋
+ ⠀⠀⠀⢀⢀⣼⣷⣶⣤⣤⣭⣤⣴⣶⣍
+ ⠀⠀⠀⠈⠈⣈⢰⠿⠛⠉⠉⢻⢇⠆⣁⠁
+ ⠀⠀⠀⠀⠀⠑⢸⠉⠀⠀⠀⠀⠁⡄⢘⣽⣿
+ ⠀⠀⠀⠀⠀⠀⡜⠀⠀⢰⡆⠀⠀⠻⠛⠋
+ ⠀⠀⠀⠀⠀⠀⠑⠒⠒⠈⠈⠒⠒⠊
+
+ ⠀┌────────────────────┐
+ ⠀│   Pass the Tests   │
+ ⠀└────────────────────┘
+  [32mPASS[0m: 11	 [31mFAIL[0m: 0

@@ -1,0 +1,16 @@
+=== RUN   TestDb
+=== RUN   TestDb/Bbolt_DB
+=== RUN   TestDb/Bbolt_DB/Single_Data_Operations
+=== RUN   TestDb/Bbolt_DB/Multiple_Data_Operations
+=== RUN   TestDb/MongoDB
+=== RUN   TestDb/MongoDB/Single_Data_Operations
+=== RUN   TestDb/MongoDB/Multiple_Data_Operations
+--- PASS: TestDb (0.09s)
+    --- PASS: TestDb/Bbolt_DB (0.03s)
+        --- PASS: TestDb/Bbolt_DB/Single_Data_Operations (0.02s)
+        --- PASS: TestDb/Bbolt_DB/Multiple_Data_Operations (0.00s)
+    --- PASS: TestDb/MongoDB (0.06s)
+        --- PASS: TestDb/MongoDB/Single_Data_Operations (0.04s)
+        --- PASS: TestDb/MongoDB/Multiple_Data_Operations (0.01s)
+PASS
+ok  	nsf/internal/db	0.106s

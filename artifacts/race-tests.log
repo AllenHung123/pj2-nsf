@@ -1,0 +1,10 @@
+?   	nsf	[no test files]
+?   	nsf/cmd	[no test files]
+ok  	nsf/internal/db	1.052s
+ok  	nsf/internal/nsfContext	(cached)
+?   	nsf/internal/sbi	[no test files]
+?   	nsf/internal/sbi/consumer	[no test files]
+?   	nsf/internal/sbi/processor	[no test files]
+?   	nsf/logger	[no test files]
+ok  	nsf/model	(cached)
+?   	nsf/pkg	[no test files]

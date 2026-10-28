@@ -1,0 +1,34 @@
+PJ2 HTTP integration / DB interface demonstration
+backend=bbolt, port=18081
+$ cat /tmp/pj2-api-0qt6zbl6/config.yaml
+nsf:
+  sbi_address: "127.0.0.1"
+  sbi_port: 18081
+  db_type: "bbolt"
+logger:
+  level: "error"
+$ /home/ubuntu/pj2-nsf/build/nsf-local -c /tmp/pj2-api-0qt6zbl6/config.yaml
+$ GET /heartbeat
+HTTP 204 null
+$ GET /nnsf-disc {"service": "absent"}
+HTTP 404 {"error": "failed to discover service: service \"absent\" not found"}
+$ POST /nnsf-nfm {"nf_name": "PJ2-NF", "sbi_address": "127.0.0.2", "sbi_port": 8081, "services": ["pj2-a", "pj2-b"]}
+HTTP 200 {"service_token_present": true, "service_uuid": "176326b3-1733-422b-9510-b1f741fdf7b6"}
+$ GET /nnsf-disc/group {"services": ["pj2-b", "pj2-a"]}
+HTTP 200 {"services": [{"service": "pj2-b", "nf_name": "PJ2-NF", "sbi_address": "127.0.0.2", "sbi_port": 8081}, {"service": "pj2-a", "nf_name": "PJ2-NF", "sbi_address": "127.0.0.2", "sbi_port": 8081}]}
+$ stop NSF and restart with the same database
+$ /home/ubuntu/pj2-nsf/build/nsf-local -c /tmp/pj2-api-0qt6zbl6/config.yaml
+$ GET /nnsf-disc {"service": "pj2-a"}
+HTTP 200 {"service": "pj2-a", "nf_name": "PJ2-NF", "sbi_address": "127.0.0.2", "sbi_port": 8081}
+$ DELETE /nnsf-nfm {"nf_name": "PJ2-NF", "services": ["pj2-a"]}
+HTTP 204 null
+$ GET /nnsf-disc {"service": "pj2-a"}
+HTTP 404 {"error": "failed to discover service: service \"pj2-a\" not found"}
+$ GET /nnsf-disc {"service": "pj2-b"}
+HTTP 200 {"service": "pj2-b", "nf_name": "PJ2-NF", "sbi_address": "127.0.0.2", "sbi_port": 8081}
+$ DELETE /nnsf-nfm {"nf_name": "PJ2-NF", "services": ["pj2-b"]}
+HTTP 204 null
+$ /home/ubuntu/pj2-nsf/build/nsf-local -c /tmp/pj2-api-0qt6zbl6/config.yaml
+$ GET /nnsf-disc {"service": "pj2-b"}
+HTTP 404 {"error": "failed to discover service: service \"pj2-b\" not found"}
+PASS: heartbeat, registration, group discovery, restart recovery, partial deletion, durable deletion

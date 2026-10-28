@@ -1,0 +1,7 @@
+# Local demonstration only; config.yaml remains on bbolt for grading.
+nsf:
+  sbi_address: "127.0.0.1"
+  sbi_port: 18080
+  db_type: "mongodb"
+logger:
+  level: "error"
