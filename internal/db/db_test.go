@@ -46,6 +46,7 @@ var dbInstance db.DbIf
 
 func TestDb(t *testing.T) {
 	t.Run("Bbolt DB", testBboltDb)
+	t.Run("Custom DB", testCustomDb)
 }
 
 func testBboltDb(t *testing.T) {
