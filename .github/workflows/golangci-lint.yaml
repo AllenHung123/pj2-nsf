@@ -2,7 +2,7 @@ name: GolangCI-Lint
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, pj2-manual ]
   pull_request:
 
 jobs:

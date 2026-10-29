@@ -2,7 +2,7 @@ name: 'Commit Message Check'
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, pj2-manual ]
   pull_request:
 
 jobs:
