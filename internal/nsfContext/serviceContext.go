@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"nsf/internal/db"
 	"nsf/logger"
+	"sort"
 	"strings"
 )
 
@@ -94,22 +95,31 @@ func (s *serviceContext) discoverService(service string) (string, string, int, e
 		return "", "", 0, err
 	}
 
-	// 找出符合的 Service
-	for key, value := range records {
-		if !strings.HasSuffix(key, ":"+service) {
-			continue
+	// 收集符合的 Service Key
+	keys := make([]string, 0)
+
+	for key := range records {
+		if strings.HasSuffix(key, ":"+service) {
+			keys = append(keys, key)
 		}
-
-		var info serviceInfo
-
-		// JSON 轉回 struct
-		if err := json.Unmarshal([]byte(value), &info); err != nil {
-			return "", "", 0, err
-		}
-
-		return info.NfName, info.SbiAddress, info.SbiPort, nil
 	}
 
+	// 排序，確保 Discovery 結果固定
+	sort.Strings(keys)
+
 	// 找不到 Service
-	return "", "", 0, fmt.Errorf("service %s not found", service)
+	if len(keys) == 0 {
+		return "", "", 0, fmt.Errorf("service %s not found", service)
+	}
+
+	// 選擇排序後的第一個 NF
+	key := keys[0]
+
+	var info serviceInfo
+
+	if err := json.Unmarshal([]byte(records[key]), &info); err != nil {
+		return "", "", 0, err
+	}
+
+	return info.NfName, info.SbiAddress, info.SbiPort, nil
 }
